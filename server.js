@@ -13,6 +13,10 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
+app.get('/', (req, res) => {
+    res.send('Aman Backend API is running!');
+});
+
 app.use('/api/notes', noteRoutes);
 app.use('/api/lessons', lessonRoutes);
 
