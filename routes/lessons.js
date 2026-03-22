@@ -14,7 +14,7 @@ const authAdmin = (req, res, next) => {
 // Get all lessons (for listing)
 router.get('/', async (req, res) => {
   try {
-    const lessons = await Lesson.find({}, '-html'); // Exclude html to save bandwidth on list
+    const lessons = await Lesson.find().sort({ createdAt: -1 });
     res.json(lessons);
   } catch (err) {
     res.status(500).json({ error: 'Server error fetching lessons' });

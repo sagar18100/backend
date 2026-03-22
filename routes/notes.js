@@ -8,7 +8,7 @@ router.post('/', async (req, res) => {
         const { module, title, content } = req.body;
         const newNote = new Note({
             module,
-            title,
+            title: title && title.trim() ? title.trim() : 'Untitled Note',
             content
         });
         const savedNote = await newNote.save();
