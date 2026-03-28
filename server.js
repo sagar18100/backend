@@ -13,6 +13,8 @@ const allowedOrigins = [
   'https://shivamai.site',
   'http://localhost:5500',
   'http://127.0.0.1:5500',
+  'http://localhost:3000',
+  'http://127.0.0.1:3000',
 ];
 
 if (process.env.FRONTEND_ORIGINS) {
@@ -39,7 +41,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(express.json());
-app.options('*', cors(corsOptions));
 
 // Routes
 app.get('/', (req, res) => {
@@ -60,7 +61,7 @@ mongoose.connect(process.env.MONGO_URI)
 
 // Start server locally (Vercel will ignore this and use the exported app)
 if (process.env.NODE_ENV !== 'production') {
-    app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+    app.listen(PORT, '0.0.0.0', () => console.log(`Server is running on port ${PORT}`));
 }
 
 module.exports = app;
